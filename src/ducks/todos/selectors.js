@@ -18,7 +18,6 @@ export const getTodos = store =>
 
 export const getTodosByVisibilityFilter = store => {
   const visibilityFilter = visibilityFilterDuck.selectors.$(store);
-  console.log(store);
   const allTodos = getTodos(store);
   switch (visibilityFilter) {
     case VISIBILITY_FILTERS.COMPLETED:

@@ -8,6 +8,8 @@ export const VISIBILITY_FILTERS = {
 
 export default createDuck({
   name: "visibilityFilter",
-  reducers: { setFilter: (_, action) => action.payload.filter },
-  initialState: VISIBILITY_FILTERS.ALL
+  initialState: VISIBILITY_FILTERS.ALL,
+  reducers: {
+    setFilter: (_, action) => action.payload
+  }
 });

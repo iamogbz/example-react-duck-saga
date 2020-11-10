@@ -1,14 +1,28 @@
 import { createDuck } from "react-ducks";
-import { ADD_TODO, DUCK_NAME, TOGGLE_TODO } from "./constants";
-import reducer, { initialState } from "./reducer";
+import { DUCK_NAME } from "./constants";
 import { getTodosByVisibilityFilter } from "./selectors";
 
 export default createDuck({
   name: DUCK_NAME,
-  reducers: {
-    [ADD_TODO]: reducer,
-    [TOGGLE_TODO]: reducer,
+  initialState: {
+    allIds: [],
+    byIds: {}
   },
-  initialState,
-  selectors: { getTodosByVisibilityFilter },
+  reducers: {
+    addTodo: (state, action) => {
+      const id = (state.allIds.slice(-1)[0] ?? 0) + 1;
+      state.allIds.push(id);
+      state.byIds[id] = {
+        content: action.payload,
+        completed: false
+      };
+      return state;
+    },
+    toggleTodo: (state, action) => {
+      const id = action.payload;
+      state.byIds[id].completed = !state.byIds[id].completed;
+      return state;
+    }
+  },
+  selectors: { getTodosByVisibilityFilter }
 });

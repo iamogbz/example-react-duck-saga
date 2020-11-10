@@ -1,7 +1,7 @@
 import React from "react";
-import { connect } from "../redux/connect";
 import cx from "classnames";
-import { toggleTodo } from "../ducks/todos/actions";
+import { connect } from "../redux/connect";
+import todoDuck from "../ducks/todos";
 
 const Todo = ({ todo, toggleTodo }) => (
   <li className="todo-item" onClick={() => toggleTodo(todo.id)}>
@@ -17,4 +17,7 @@ const Todo = ({ todo, toggleTodo }) => (
   </li>
 );
 
-export default connect(null, { toggleTodo })(Todo);
+export default connect(
+  null,
+  { toggleTodo: todoDuck.actions.toggleTodo }
+)(Todo);
