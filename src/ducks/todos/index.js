@@ -1,4 +1,4 @@
-import { createDuck } from "react-duck";
+import { createDuck } from "react-ducks";
 import { ADD_TODO, DUCK_NAME, TOGGLE_TODO } from "./constants";
 import reducer, { initialState } from "./reducer";
 import { getTodosByVisibilityFilter } from "./selectors";

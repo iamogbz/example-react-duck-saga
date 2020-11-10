@@ -1,21 +1,24 @@
 import React from "react";
 import cx from "classnames";
 import { connect } from "../redux/connect";
-import { VISIBILITY_FILTERS, setFilter } from "../ducks/visibilityFilter";
+import visibilityFilterDuck, {
+  VISIBILITY_FILTERS
+} from "../ducks/visibilityFilter";
 
 const VisibilityFilters = ({ activeFilter, setFilter }) => {
   return (
     <div className="visibility-filters">
-      {Object.keys(VISIBILITY_FILTERS).map((filterKey) => {
+      {Object.keys(VISIBILITY_FILTERS).map(filterKey => {
         const currentFilter = VISIBILITY_FILTERS[filterKey];
         return (
           <span
             key={`visibility-filter-${currentFilter}`}
             className={cx(
               "filter",
-              currentFilter === activeFilter && "filter--active",
+              currentFilter === activeFilter && "filter--active"
             )}
-            onClick={() => setFilter(currentFilter)}>
+            onClick={() => setFilter(currentFilter)}
+          >
             {currentFilter}
           </span>
         );
@@ -24,8 +27,11 @@ const VisibilityFilters = ({ activeFilter, setFilter }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return { activeFilter: state.visibilityFilter };
 };
 
-export default connect(mapStateToProps, { setFilter })(VisibilityFilters);
+export default connect(
+  mapStateToProps,
+  visibilityFilterDuck.actions
+)(VisibilityFilters);

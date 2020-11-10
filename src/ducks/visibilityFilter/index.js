@@ -1,14 +1,13 @@
-import { createDuck } from "react-duck";
-import { DUCK_NAME, SET_FILTER } from "./constants";
-import reducer, { initialState } from "./reducer";
-import { getVisibilityFiltersState } from "./selectors";
+import { createDuck } from "react-ducks";
 
-export { VISIBILITY_FILTERS } from "./constants";
-export { setFilter } from "./actions";
+export const VISIBILITY_FILTERS = {
+  ALL: "all",
+  COMPLETED: "completed",
+  INCOMPLETE: "incomplete"
+};
 
 export default createDuck({
-  name: DUCK_NAME,
-  reducers: { [SET_FILTER]: reducer },
-  initialState,
-  selectors: { $: getVisibilityFiltersState },
+  name: "visibilityFilter",
+  reducers: { setFilter: (_, action) => action.payload.filter },
+  initialState: VISIBILITY_FILTERS.ALL
 });
