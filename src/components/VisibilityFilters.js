@@ -1,11 +1,15 @@
 import React from "react";
 import cx from "classnames";
-import { connect } from "../redux/connect";
+import { useDispatch, useSelector } from "react-ducks";
+
 import visibilityFilterDuck, {
   VISIBILITY_FILTERS
 } from "../ducks/visibilityFilter";
 
-const VisibilityFilters = ({ activeFilter, setFilter }) => {
+export default function VisibilityFilters() {
+  const activeFilter = useSelector(visibilityFilterDuck.selectors.$);
+  const setFilter = useDispatch(visibilityFilterDuck.actions.setFilter);
+
   return (
     <div className="visibility-filters">
       {Object.keys(VISIBILITY_FILTERS).map(filterKey => {
@@ -25,13 +29,4 @@ const VisibilityFilters = ({ activeFilter, setFilter }) => {
       })}
     </div>
   );
-};
-
-const mapStateToProps = state => {
-  return { activeFilter: state.visibilityFilter };
-};
-
-export default connect(
-  mapStateToProps,
-  visibilityFilterDuck.actions
-)(VisibilityFilters);
+}
