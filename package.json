@@ -6,7 +6,7 @@
     "classnames": "^2.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-ducks": "^0.5.8",
+    "react-ducks": "^0.6.2",
     "react-scripts": "^4.0.0",
     "redux-saga": "^1.1.3",
     "reselect": "^4.0.0",
